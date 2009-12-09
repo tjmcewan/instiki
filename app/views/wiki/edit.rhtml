@@ -4,16 +4,11 @@
   @hide_navigation = true
 -%>
 
-<div id="MarkupHelp">
-  <%= render(:file => "#{@web.markup}_help") %>
-  <%= render(:file => 'wiki_words_help') %>
-</div>
-
 	<% form_tag({ :action => 'save', :web => @web.address, :id => @page.name },
 	             { 'id' => 'editForm', 'method' => 'post', 'onsubmit' => 'cleanAuthorName()',
 	               'accept-charset' => 'utf-8' }) do %>
 	   <div>	
-		<textarea name="content" id="content" rows="24" cols="60"><%= h(flash[:content] || 
+		<textarea class="wymeditor" name="content" id="content" rows="24" cols="60"><%= h(flash[:content] || 
                          (params['content'] ?  params['content'] : @page.content).purify) %></textarea>
 <% if @page_name != 'HomePage' -%>
 	   <p>
@@ -26,7 +21,7 @@
        <%= hidden_field_tag 'new_name', @page_name %>
 <% end%> 
 		<div id="editFormButtons">
-			<input type="submit" value="Submit" accesskey="s"/> as 
+			<input class="wymupdate" type="submit" value="Submit" accesskey="s" /> as 
 			<%= text_field_tag :author, h(@author.purify), 
 			        :onfocus => "this.value == 'AnonymousCoward' ? this.value = '' : true;",
 			        :onblur  => "this.value == '' ? this.value = 'AnonymousCoward' : true" %>

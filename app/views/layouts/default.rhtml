@@ -13,7 +13,7 @@
 
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="robots" content="<%= @robots_metatag_value %>" />
-  
+ 
   <%= javascript_include_tag 'page_helper' %>
  
   <style type="text/css">
@@ -34,6 +34,23 @@
   	<%= auto_discovery_link_tag(:atom, {:controller => 'wiki', :web => @web.address, :action => 'atom_with_content'},
   	      :title => 'Atom with full content') %>
   <%- end -%>
+  
+  
+  <%= javascript_include_tag 'jquery', 'wymeditor/jquery.wymeditor.js' %>
+
+  <script type="text/javascript">
+
+  var $j = jQuery.noConflict();
+
+  $j(function() {
+      $j(".wymeditor").wymeditor();
+  });
+
+  </script>
+  
+  <link rel="stylesheet" type="text/css" media="screen" href="wymeditor/skins/default/screen.css" />
+  
+  
 </head>
 
 <body>
